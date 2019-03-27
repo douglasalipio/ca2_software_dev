@@ -16,7 +16,7 @@ public class AirPlane {
     private final String make;
     private final int model;
     private final int capacity;
-    private final String pilot;
+    private Pilot pilot;
 
     /**
      * Creating an airplane object.
@@ -26,11 +26,10 @@ public class AirPlane {
      * @param capacity how many seats
      * @param pilot the name of the pilot
      */
-    public AirPlane(String make, int model, int capacity, String pilot) {
+    public AirPlane(String make, int model, int capacity) {
         this.make = make;
         this.model = model;
         this.capacity = capacity;
-        this.pilot = pilot;
     }
 
     /**
@@ -57,10 +56,9 @@ public class AirPlane {
     }
 
     /**
-     *
-     * @return the pilot name
+     * @param pilot
      */
-    public String getPilot() {
-        return pilot;
+    public void assignPilot(Pilot pilot) {
+        this.pilot = pilot;
     }
 }
