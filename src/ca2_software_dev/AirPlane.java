@@ -24,7 +24,6 @@ public class AirPlane {
      * @param make type of plane, such as, "Boeing"
      * @param model number that describes the airplane
      * @param capacity how many seats
-     * @param pilot the name of the pilot
      */
     public AirPlane(String make, int model, int capacity) {
         this.make = make;
@@ -61,4 +60,19 @@ public class AirPlane {
     public void assignPilot(Pilot pilot) {
         this.pilot = pilot;
     }
+
+    /**
+     *
+     * @return pilot
+     */
+    public Pilot getPilot() {
+        return this.pilot;
+    }
+
+    @Override
+    public String toString() {
+        return "AirPlane{" + "make=" + make + ", model=" + model + ", "
+                + "capacity=" + capacity + ", pilot=" + pilot + '}';
+    }
+
 }

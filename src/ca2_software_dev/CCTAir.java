@@ -5,17 +5,22 @@
  */
 package ca2_software_dev;
 
+import com.sun.tools.javac.Main;
+import java.util.List;
+
 /**
  *
  * @author hal-9000
  */
-public class Ca2_software_dev {
+public class CCTAir {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+
+        DataSet dataSet = new DataSet();
+        List<Flight> flights = dataSet.getFlights();
+        for (int k = 0; k < 30; k++) {
+            System.out.println(flights.get(k).toString());
+        }
+
     }
-    
 }
