@@ -76,8 +76,8 @@ public class DataSet {
             "Textron Aviation",
             "Pilatus Business Aircraft"};
         
-        String[] models = {"Boing 747", ""};
-
+        String[] models = {"Boing 747", "Airbus A320 family","Antonov An‑140","A300B4", "Airbus A3240", "Antonov An‑200"};
+        String[] Capacity ={"300", "400", "370", "472", "270", "550"};
         return null;
 
     }
