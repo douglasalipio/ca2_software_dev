@@ -26,6 +26,7 @@ public class DataSet {
         String[] arrivalToMocks = {"Hong Kong", "Haway", "London", "Krakow", "Caracas"};
         String[] departureTimeMocks = {"4:20", "6:40", "8:30", "12:45", "17:40"};
         String[] arrivalTimeMocks = {"8:00", "11:00", "16:00", "18:00", "19:15", "22:00"};
+        List<AirPlane> airPlanes = getMockAirplane();
 
         List<Date> dateFlightMocks = getMockDates();
 
@@ -35,13 +36,14 @@ public class DataSet {
             int arrivalToIndex = random.nextInt(arrivalToMocks.length);
             int arrivalTimeIndex = random.nextInt(arrivalTimeMocks.length);
             int departureTimeIndex = random.nextInt(departureTimeMocks.length);
+            int airPlaneIndex = random.nextInt(airPlanes.size());
 
             Flight flight = new Flight(formatData(dateFlightMocks.get(i)),
                     departureFromMocks[departureFromIndex]);
             flight.setArrivalTo(arrivalToMocks[arrivalToIndex]);
             flight.setDepartureTime(departureTimeMocks[departureTimeIndex]);
             flight.setArrivalTime(arrivalTimeMocks[arrivalTimeIndex]);
-
+            flight.assignAircraft(airPlanes.get(airPlaneIndex));
             containerFlights.add(flight);
         }
 
@@ -68,18 +70,48 @@ public class DataSet {
         return containerDates;
     }
 
-    private AirPlane getMockAirplane() {
+    private List<AirPlane> getMockAirplane() {
+        List<AirPlane> containerAirPlane = new ArrayList();
+        Random random = new Random();
+
         String[] make = {"Boeing Business Jets",
             "Bombardier Aerospace",
             "Dassault Falcon",
             "Gulfstream Aerospace",
-            "Textron Aviation",
-            "Pilatus Business Aircraft"};
-        
-        String[] models = {"Boing 747", "Airbus A320 family","Antonov An‑140","A300B4", "Airbus A3240", "Antonov An‑200"};
-        String[] Capacity ={"300", "400", "370", "472", "270", "550"};
-        return null;
+            "Textron Aviation"};
 
+        String[] models = {"Boing 747",
+            "Airbus A320 family",
+            "Antonov An‑140",
+            "A300B4",
+            "Airbus A3240"};
+
+        int[] capacity = {300, 400, 370, 472, 270};
+
+        for (Pilot mockPilot : getMockPilots()) {
+            int makeIndex = random.nextInt(make.length);
+            int modelsIndex = random.nextInt(models.length);
+            int capacityIndex = random.nextInt(capacity.length);
+
+            AirPlane plane = new AirPlane(make[makeIndex],
+                    models[modelsIndex],
+                    capacity[capacityIndex]);
+            plane.assignPilot(mockPilot);
+            containerAirPlane.add(plane);
+
+        }
+        return containerAirPlane;
+
+    }
+
+    private List<Pilot> getMockPilots() {
+        List<Pilot> containerPilots = new ArrayList();
+        containerPilots.add(new Pilot("Jose", Pilot.Qualification.LARGE_AIRCRAFT));
+        containerPilots.add(new Pilot("Severino", Pilot.Qualification.LARGE_AIRCRAFT));
+        containerPilots.add(new Pilot("Maria", Pilot.Qualification.MEDIUM_AIRCRAFT));
+        containerPilots.add(new Pilot("Josefina", Pilot.Qualification.SMALL_AIRCRAFT));
+        containerPilots.add(new Pilot("Manoel", Pilot.Qualification.MEDIUM_AIRCRAFT));
+        return containerPilots;
     }
 
     private String formatData(Date date) {

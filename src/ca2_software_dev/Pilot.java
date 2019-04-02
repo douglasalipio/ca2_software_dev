@@ -13,17 +13,17 @@ package ca2_software_dev;
 public class Pilot {
 
     private final String name;
-    private int rate;
-    private String qualification;
+    private Qualification qualification;
+    private boolean status;
 
     /**
      * Creating constructor Pilot with name and rate
      *
      * @param name of pilot
      */
-    public Pilot(String name, int rate) {
+    public Pilot(String name, Qualification qualification) {
         this.name = name;
-        this.rate = rate;
+        this.qualification = qualification;
     }
 
     public Pilot(String name) {
@@ -34,12 +34,27 @@ public class Pilot {
         return this.name;
     }
 
-    public int getRate() {
-        return this.rate;
+    public Qualification getQualification() {
+        return this.qualification;
     }
 
-    public String getQualification() {
-        return this.qualification;
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public enum Qualification {
+        SMALL_AIRCRAFT,
+        MEDIUM_AIRCRAFT,
+        LARGE_AIRCRAFT
+    }
+
+    @Override
+    public String toString() {
+        return "Pilot{" + "name=" + name + ", qualification=" + qualification + ", status=" + status + '}';
     }
 
 }

@@ -14,7 +14,7 @@ package ca2_software_dev;
 public class AirPlane {
 
     private final String make;
-    private final int model;
+    private final String model;
     private final int capacity;
     private Pilot pilot;
 
@@ -25,7 +25,7 @@ public class AirPlane {
      * @param model number that describes the airplane
      * @param capacity how many seats
      */
-    public AirPlane(String make, int model, int capacity) {
+    public AirPlane(String make, String model, int capacity) {
         this.make = make;
         this.model = model;
         this.capacity = capacity;
@@ -42,7 +42,7 @@ public class AirPlane {
      *
      * @return the model
      */
-    public int getModel() {
+    public String getModel() {
         return model;
     }
 
