@@ -16,11 +16,7 @@ public class CCTAir {
 
     public static void main(String[] args) {
 
-        DataSet dataSet = new DataSet();
-        List<Flight> flights = dataSet.getFlights();
-        for (int k = 0; k < 30; k++) {
-            System.out.println(flights.get(k).toString());
-        }
-
+        UserUI userUI = new UserUI();
+        userUI.inputFlights();
     }
 }
