@@ -1,13 +1,15 @@
+package utils;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ca2_software_dev;
-
+import entitites.Flight;
+import entitites.AirPlane;
+import entitites.Pilot;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -18,6 +20,18 @@ import java.util.Random;
  * @author hal-9000
  */
 public class DataSet {
+
+    private static DataSet INSTANCE = null;
+
+    public static DataSet getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new DataSet();
+        }
+        return (INSTANCE);
+    }
+
+    private DataSet() {
+    }
 
     public List<Flight> getFlights() {
         List<Flight> containerFlights = new ArrayList();

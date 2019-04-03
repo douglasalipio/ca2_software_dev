@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ca2_software_dev;
+package entitites;
 
+import entitites.AirPlane;
 import java.util.Date;
 
 /**
@@ -71,12 +72,14 @@ public class Flight {
 
     @Override
     public String toString() {
-        return "Flight{" + "Date: " + dateFlight + ", From: " + departureFrom
+        return "Flight: {" + "Date: " + dateFlight + ", From: " + departureFrom
                 + ", To: " + arrivalTo + ", Departure time: " + departureTime
                 + "\nArrival time: " + arrivalTime
                 + "\nPlane information: " + "\nMake " + airPlane.getMake()
                 + "\nModel: " + airPlane.getModel()
                 + "\nCapacity:" + airPlane.getCapacity()
-                + "\nPilot: " + airPlane.getPilot() + '}';
+                + "\nPilot: " + airPlane.getPilot()  
+                + "}"
+                +"\n\n";
     }
 }

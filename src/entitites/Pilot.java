@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ca2_software_dev;
+package entitites;
 
 /**
  * Creating Pilot Class This class represents a Pilot
@@ -54,7 +54,9 @@ public class Pilot {
 
     @Override
     public String toString() {
-        return "Pilot{" + "name=" + name + ", qualification=" + qualification + ", status=" + status + '}';
+        return "Pilot {" + "name: " + name + ", "
+                + "qualification: " + qualification + ", "
+                + "status: " + status + "";
     }
 
 }

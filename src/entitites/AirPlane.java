@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ca2_software_dev;
+package entitites;
+
+import entitites.Pilot;
 
 /**
  *
@@ -71,8 +73,8 @@ public class AirPlane {
 
     @Override
     public String toString() {
-        return "AirPlane{" + "make=" + make + ", model=" + model + ", "
-                + "capacity=" + capacity + ", pilot=" + pilot + '}';
+        return "AirPlane{" + "make=" + make + ", model=" + model + ", " 
+                + "capacity=" + capacity + ", pilot=" + pilot + "}";
     }
 
 }

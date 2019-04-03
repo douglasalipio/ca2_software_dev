@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ca2_software_dev;
 
+
+import views.UserUI;
 import com.sun.tools.javac.Main;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  *
  * @author hal-9000
  */
-public class CCTAir {
+public class CCTAirMain {
 
     public static void main(String[] args) {
 
