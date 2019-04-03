@@ -70,6 +70,15 @@ public class Flight {
         return this.airPlane;
     }
 
+    public void schedule(String arrivalTime) {
+        this.arrivalTime = arrivalTime;
+    }
+
+    public void schedule(String arrivalTime, String departureTime) {
+        this.arrivalTime = arrivalTime;
+        this.departureTime = departureTime;
+    }
+
     @Override
     public String toString() {
         return "Flight: {" + "Date: " + dateFlight + ", From: " + departureFrom
@@ -78,8 +87,8 @@ public class Flight {
                 + "\nPlane information: " + "\nMake " + airPlane.getMake()
                 + "\nModel: " + airPlane.getModel()
                 + "\nCapacity:" + airPlane.getCapacity()
-                + "\nPilot: " + airPlane.getPilot()  
+                + "\nPilot: " + airPlane.getPilot()
                 + "}"
-                +"\n\n";
+                + "\n\n";
     }
 }
