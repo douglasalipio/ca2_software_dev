@@ -14,12 +14,12 @@ public class Pilot {
 
     private final String name;
     private Qualification qualification;
-    private boolean status;
 
     /**
      * Creating constructor Pilot with name and rate
      *
      * @param name of pilot
+     * @param qualification of pilot
      */
     public Pilot(String name, Qualification qualification) {
         this.name = name;
@@ -38,14 +38,6 @@ public class Pilot {
         return this.qualification;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
-
     public enum Qualification {
         SMALL_AIRCRAFT,
         MEDIUM_AIRCRAFT,
@@ -55,8 +47,7 @@ public class Pilot {
     @Override
     public String toString() {
         return "Pilot {" + "name: " + name + ", "
-                + "qualification: " + qualification + ", "
-                + "status: " + status + "";
+                + "qualification: " + qualification + ", " + "";
     }
 
 }

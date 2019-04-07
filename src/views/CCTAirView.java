@@ -5,7 +5,10 @@
  */
 package views;
 
+import entitites.AirPlane;
 import entitites.Flight;
+import entitites.Pilot;
+import java.util.List;
 
 /**
  *
@@ -13,6 +16,13 @@ import entitites.Flight;
  */
 public interface CCTAirView {
 
-    public void onScheduleSuccess(Flight flight);
+    public void showAllFlights(List<Flight> flights);
 
+    public void onSuccessFlight(Flight flight,
+            List<AirPlane> airplanes,
+            List<Pilot> pilots);
+
+    public void prepareScheduleArrival(List<Flight> userFlights);
+
+    public void prepareScheduleDestinyTime(List<Flight> userFlights);
 }

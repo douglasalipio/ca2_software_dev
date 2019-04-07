@@ -5,25 +5,32 @@
  */
 package entitites;
 
-import entitites.AirPlane;
-import java.util.Date;
-
 /**
  *
  * @author hal-9000
  */
 public class Flight {
 
+    private final long id;
     private AirPlane airPlane;
     private String departureFrom;
     private String arrivalTo;
     private String departureTime;
     private String arrivalTime;
     private String dateFlight;
+    private boolean close;
 
     public Flight(String dateFlight, String departureFrom) {
         this.dateFlight = dateFlight;
         this.departureFrom = departureFrom;
+        this.id = System.currentTimeMillis();
+    }
+
+    public Flight(String dateFlight, String departureFrom, String arrivalTo) {
+        this.dateFlight = dateFlight;
+        this.departureFrom = departureFrom;
+        this.id = System.currentTimeMillis();
+        this.arrivalTo = arrivalTo;
     }
 
     public String getDepartureFrom() {
@@ -79,6 +86,22 @@ public class Flight {
         this.departureTime = departureTime;
     }
 
+    public long getId() {
+        return this.id;
+    }
+
+    public boolean isClose() {
+        return close;
+    }
+
+    public boolean isNotClose() {
+        return !isClose();
+    }
+
+    public void setClose(boolean isClose) {
+        this.close = isClose;
+    }
+
     @Override
     public String toString() {
         return "Flight: {" + "Date: " + dateFlight + ", From: " + departureFrom
@@ -89,6 +112,6 @@ public class Flight {
                 + "\nCapacity:" + airPlane.getCapacity()
                 + "\nPilot: " + airPlane.getPilot()
                 + "}"
-                + "\n\n";
+                + "\n\n-------------------------------------------------------------------";
     }
 }

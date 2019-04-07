@@ -16,13 +16,20 @@ import java.util.List;
 import java.util.Random;
 
 /**
+ * Creating the class to create the flights, pilots and airplanes.
  *
  * @author hal-9000
  */
 public class DataSet {
 
     private static DataSet INSTANCE = null;
+    private final List<Flight> containerFlights = new ArrayList();
 
+    /**
+     * Singleton instance for DataSet object.
+     *
+     * @return
+     */
     public static DataSet getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new DataSet();
@@ -30,11 +37,13 @@ public class DataSet {
         return (INSTANCE);
     }
 
-    private DataSet() {
-    }
-
+    /**
+     * Creating the 30 default flights.
+     *
+     * @return
+     */
     public List<Flight> getFlights() {
-        List<Flight> containerFlights = new ArrayList();
+
         Random random = new Random();
         String[] departureFromMocks = {"Recife", "Sao Paulo", "Rio Janeiro", "Dublin", "Morrocos"};
         String[] arrivalToMocks = {"Hong Kong", "Haway", "London", "Krakow", "Caracas"};
@@ -57,6 +66,7 @@ public class DataSet {
             flight.setArrivalTo(arrivalToMocks[arrivalToIndex]);
             flight.setDepartureTime(departureTimeMocks[departureTimeIndex]);
             flight.setArrivalTime(arrivalTimeMocks[arrivalTimeIndex]);
+            flight.setClose(true);
             flight.assignAircraft(airPlanes.get(airPlaneIndex));
             containerFlights.add(flight);
         }
@@ -65,6 +75,11 @@ public class DataSet {
 
     }
 
+    /**
+     * Generating dates for flights.
+     *
+     * @return
+     */
     private List<Date> getMockDates() {
         List<Date> containerDates = new ArrayList();
         int[] months = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
@@ -84,7 +99,12 @@ public class DataSet {
         return containerDates;
     }
 
-    private List<AirPlane> getMockAirplane() {
+    /**
+     * Creating a list of airplane.
+     *
+     * @return a list of airplanes
+     */
+    public List<AirPlane> getMockAirplane() {
         List<AirPlane> containerAirPlane = new ArrayList();
         Random random = new Random();
 
@@ -100,25 +120,30 @@ public class DataSet {
             "A300B4",
             "Airbus A3240"};
 
-        int[] capacity = {300, 400, 370, 472, 270};
+        int[] capacity = {200, 300, 400, 450, 500};
 
-        for (Pilot mockPilot : getMockPilots()) {
+        getMockPilots().stream().map((mockPilot) -> {
             int makeIndex = random.nextInt(make.length);
             int modelsIndex = random.nextInt(models.length);
             int capacityIndex = random.nextInt(capacity.length);
-
             AirPlane plane = new AirPlane(make[makeIndex],
                     models[modelsIndex],
                     capacity[capacityIndex]);
             plane.assignPilot(mockPilot);
+            return plane;
+        }).forEachOrdered((plane) -> {
             containerAirPlane.add(plane);
-
-        }
+        });
         return containerAirPlane;
 
     }
 
-    private List<Pilot> getMockPilots() {
+    /**
+     * Creating a list of pilots.
+     *
+     * @return pilots available for flight.
+     */
+    public List<Pilot> getMockPilots() {
         List<Pilot> containerPilots = new ArrayList();
         containerPilots.add(new Pilot("Jose", Pilot.Qualification.LARGE_AIRCRAFT));
         containerPilots.add(new Pilot("Severino", Pilot.Qualification.LARGE_AIRCRAFT));
@@ -128,9 +153,34 @@ public class DataSet {
         return containerPilots;
     }
 
+    /**
+     * Getting a single flight.
+     *
+     * @param id
+     * @return a flight if exist or null.
+     */
+    public Flight getFlight(long id) {
+        for (Flight flight : getFlights()) {
+            if (flight.getId() == id) {
+                return flight;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Formatting date by dd-MM-yyyy
+     *
+     * @param date object
+     * @return date string.
+     */
     private String formatData(Date date) {
         String pattern = "dd-MM-yyyy";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         return simpleDateFormat.format(date);
+    }
+
+    public void setFlight(Flight flight) {
+        this.containerFlights.add(flight);
     }
 }

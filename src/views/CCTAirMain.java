@@ -5,7 +5,7 @@ package views;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import views.UserUI;
+import views.CCTAirUI;
 import com.sun.tools.javac.Main;
 import java.util.List;
 
@@ -17,7 +17,7 @@ public class CCTAirMain {
 
     public static void main(String[] args) {
 
-        UserUI userUI = new UserUI();
-        userUI.inputFlights();
+        CCTAirUI userUI = new CCTAirUI();
+        userUI.showMainMenu();
     }
 }
