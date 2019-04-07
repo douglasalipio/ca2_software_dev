@@ -15,6 +15,11 @@ import java.util.List;
  */
 public class CCTAirMain {
 
+    /**
+     * Main method
+     *
+     * @param args
+     */
     public static void main(String[] args) {
 
         CCTAirUI userUI = new CCTAirUI();

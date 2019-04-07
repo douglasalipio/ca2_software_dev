@@ -26,24 +26,47 @@ public class Pilot {
         this.qualification = qualification;
     }
 
+    /**
+     * Creating a pilot.
+     *
+     * @param name
+     */
     public Pilot(String name) {
         this.name = name;
     }
 
+    /**
+     * Getting pilot name.
+     *
+     * @return
+     */
     public String getName() {
         return this.name;
     }
 
+    /**
+     * Getting pilot qualification.
+     *
+     * @return
+     */
     public Qualification getQualification() {
         return this.qualification;
     }
 
+    /**
+     * Qualification for a pilot.
+     */
     public enum Qualification {
         SMALL_AIRCRAFT,
         MEDIUM_AIRCRAFT,
         LARGE_AIRCRAFT
     }
 
+    /**
+     * Printing all attributes.
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "Pilot {" + "name: " + name + ", "

@@ -5,8 +5,6 @@
  */
 package entitites;
 
-import entitites.Pilot;
-
 /**
  *
  * That class represent an airplane object.
@@ -71,9 +69,14 @@ public class AirPlane {
         return this.pilot;
     }
 
+    /**
+     * Printing all attributes.
+     *
+     * @return
+     */
     @Override
     public String toString() {
-        return "AirPlane{" + "make=" + make + ", model=" + model + ", " 
+        return "AirPlane{" + "make=" + make + ", model=" + model + ", "
                 + "capacity=" + capacity + ", pilot=" + pilot + "}";
     }
 

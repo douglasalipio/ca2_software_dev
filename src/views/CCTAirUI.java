@@ -175,6 +175,11 @@ public class CCTAirUI implements CCTAirView {
         }
     }
 
+    /**
+     * Showing flights created by the users.
+     *
+     * @param userFlights
+     */
     private void printUserFlights(List<Flight> userFlights) {
         for (int i = 0; i < userFlights.size(); i++) {
             System.out.println("SCHEDULE ARRIVAL TIME");
@@ -182,6 +187,11 @@ public class CCTAirUI implements CCTAirView {
         }
     }
 
+    /**
+     * Getting arrival time from user.
+     *
+     * @param userFlights list of flights who the user has created.
+     */
     @Override
     public void prepareScheduleArrival(List<Flight> userFlights) {
         Flight flightSelected = null;
@@ -203,6 +213,11 @@ public class CCTAirUI implements CCTAirView {
         }
     }
 
+    /**
+     * Getting arrival/departure time from user.
+     *
+     * @param userFlights list of flights who the user has created.
+     */
     @Override
     public void prepareScheduleDestinyTime(List<Flight> userFlights) {
         Flight flightSelected = null;

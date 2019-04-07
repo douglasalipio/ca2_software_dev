@@ -21,18 +21,13 @@ public class CCTAirPresenter {
 
     private CCTAirView view;
 
+    /**
+     * Dependency injection
+     *
+     * @param view
+     */
     public void inject(CCTAirView view) {
         this.view = view;
-    }
-
-    public void schedule(Flight flight) {
-        flight.schedule("12:00", "18:20");
-        //view.onScheduleSuccess(flight);
-    }
-
-    public void scheduleByArrivalTime(Flight flight) {
-        flight.schedule("11:00");
-        //view.onScheduleSuccess(flight);
     }
 
     /**
@@ -56,10 +51,18 @@ public class CCTAirPresenter {
         view.onSuccessFlight(newFlight, airPlanes, pilotes);
     }
 
+    /**
+     * Submit a flight to the data set.
+     *
+     * @param flight
+     */
     public void submitFlight(Flight flight) {
         DataSet.getInstance().setFlight(flight);
     }
 
+    /**
+     * Submit arrival time to a flight.
+     */
     public void submitArrivalTime() {
         List<Flight> allFlights = DataSet.getInstance().getFlights();
         List<Flight> userFlights = new ArrayList();
@@ -71,6 +74,9 @@ public class CCTAirPresenter {
         view.prepareScheduleArrival(userFlights);
     }
 
+    /**
+     * Submit destiny time to a flight.
+     */
     public void submitDestinyTime() {
         List<Flight> allFlights = DataSet.getInstance().getFlights();
         List<Flight> userFlights = new ArrayList();
