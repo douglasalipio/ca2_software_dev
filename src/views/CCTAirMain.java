@@ -7,6 +7,7 @@ package views;
  */
 import views.CCTAirUI;
 import com.sun.tools.javac.Main;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -21,7 +22,6 @@ public class CCTAirMain {
      * @param args
      */
     public static void main(String[] args) {
-
         CCTAirUI userUI = new CCTAirUI();
         userUI.showMainMenu();
     }

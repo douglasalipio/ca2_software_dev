@@ -6,11 +6,12 @@
 package models;
 
 import data.DataSet;
-import entitites.AirPlane;
+import entitites.Airplane;
 import entitites.Flight;
 import entitites.Pilot;
 import java.util.ArrayList;
 import java.util.List;
+import misc.StringUtils;
 import views.CCTAirView;
 
 /**
@@ -45,10 +46,12 @@ public class CCTAirPresenter {
      * @param arrivalTo
      */
     public void createFlight(String departureFrom, String dateFlight, String arrivalTo) {
+
         Flight newFlight = new Flight(dateFlight, departureFrom, arrivalTo);
-        List<AirPlane> airPlanes = DataSet.getInstance().getMockAirplane();
+        List<Airplane> airPlanes = DataSet.getInstance().getMockAirplane();
         List<Pilot> pilotes = DataSet.getInstance().getMockPilots();
         view.onSuccessFlight(newFlight, airPlanes, pilotes);
+
     }
 
     /**

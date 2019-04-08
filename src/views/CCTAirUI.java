@@ -9,8 +9,9 @@ import entitites.Flight;
 import java.util.List;
 import java.util.Scanner;
 import models.CCTAirPresenter;
-import entitites.AirPlane;
+import entitites.Airplane;
 import entitites.Pilot;
+import misc.StringUtils;
 
 /**
  * UI class responsable to show all information to the user.
@@ -33,14 +34,23 @@ public class CCTAirUI implements CCTAirView {
      * Input a new flight.
      */
     private void inputFlight() {
+
+        Scanner localReader = new Scanner(System.in);
+        String dateFlight = "";
         System.out.println("Departure from:");
-        String departureFrom = reader.next();
+        String departureFrom = localReader.next();
 
         System.out.println("Arrival to:");
-        String arrivalTo = reader.next();
+        String arrivalTo = localReader.next();
 
         System.out.println("Date flight (DD-MM-YYYY): ");
-        String dateFlight = reader.next();
+        dateFlight = localReader.next();
+
+        while (!StringUtils.validateDate(dateFlight)) {
+            System.out.println("Invalid date. The format is dd-mm-yyyy");
+            System.out.println("Date flight (DD-MM-YYYY): ");
+            dateFlight = localReader.next();
+        }
 
         presenter.createFlight(departureFrom, dateFlight, arrivalTo);
     }
@@ -101,8 +111,8 @@ public class CCTAirUI implements CCTAirView {
      * @param pilotes
      */
     @Override
-    public void onSuccessFlight(Flight flight, List<AirPlane> airplanes, List<Pilot> pilotes) {
-        AirPlane airplane = chooseAirplane(airplanes);
+    public void onSuccessFlight(Flight flight, List<Airplane> airplanes, List<Pilot> pilotes) {
+        Airplane airplane = chooseAirplane(airplanes);
         airplane.assignPilot(choosePilot(pilotes));
         flight.assignAircraft(airplane);
         System.out.println("Flight created with success.");
@@ -116,9 +126,9 @@ public class CCTAirUI implements CCTAirView {
      * @param airplanes
      * @return
      */
-    private AirPlane chooseAirplane(List<AirPlane> airplanes) {
-        AirPlane airplaneSelected = null;
-        System.out.println("\nPick up an airplane:");
+    private Airplane chooseAirplane(List<Airplane> airplanes) {
+        Airplane airplaneSelected = null;
+        System.out.println("\nPick up an airplane:\n");
         printAirplanes(airplanes);
         int airPlaneOption = reader.nextInt();
 
@@ -126,7 +136,7 @@ public class CCTAirUI implements CCTAirView {
             airplaneSelected = airplanes.get(airPlaneOption);
         } else {
             System.out.println("Invalid option. Please try again.");
-            System.out.println("\nPick up an airplane:");
+            System.out.println("\nPick up an airplane:\n");
             printAirplanes(airplanes);
         }
         return airplaneSelected;
@@ -158,7 +168,7 @@ public class CCTAirUI implements CCTAirView {
      *
      * @param airplanes
      */
-    private void printAirplanes(List<AirPlane> airplanes) {
+    private void printAirplanes(List<Airplane> airplanes) {
         for (int i = 0; i < airplanes.size(); i++) {
             System.out.println(" " + i + " - " + airplanes.get(i).toString());
         }
@@ -181,9 +191,14 @@ public class CCTAirUI implements CCTAirView {
      * @param userFlights
      */
     private void printUserFlights(List<Flight> userFlights) {
-        for (int i = 0; i < userFlights.size(); i++) {
-            System.out.println("SCHEDULE ARRIVAL TIME");
-            System.out.println("" + i + " - " + userFlights.get(i).toString());
+        if (userFlights.isEmpty()) {
+            System.out.println("There is no flight to schedule.");
+            showMainMenu();
+        } else {
+            for (int i = 0; i < userFlights.size(); i++) {
+                System.out.println("SCHEDULE ARRIVAL TIME\n");
+                System.out.println("" + i + " - " + userFlights.get(i).toString());
+            }
         }
     }
 
@@ -194,22 +209,27 @@ public class CCTAirUI implements CCTAirView {
      */
     @Override
     public void prepareScheduleArrival(List<Flight> userFlights) {
-        Flight flightSelected = null;
-        printUserFlights(userFlights);
-        int flightOption = reader.nextInt();
-        if (flightOption >= 0 && flightOption <= 4) {
-            flightSelected = userFlights.get(flightOption);
-            System.out.println("Schedule arrival time (HH:MM): ");
-            String arrivalTime = reader.next();
-            flightSelected.schedule(arrivalTime);
-            presenter.submitFlight(flightSelected);
-            System.out.println("Schedule with success.");
+        if (userFlights.isEmpty()) {
+            System.out.println("There is no flight to schedule.");
             showMainMenu();
         } else {
-            System.out.println("Invalid option, please try again.");
+            Flight flightSelected = null;
             printUserFlights(userFlights);
-            System.out.println("1 - Back to MENU");
-            System.out.println("0 - Close app");
+            int flightOption = reader.nextInt();
+            if (flightOption >= 0 && flightOption <= 4) {
+                flightSelected = userFlights.get(flightOption);
+                System.out.println("Schedule arrival time (HH:MM): ");
+                String arrivalTime = reader.next();
+                flightSelected.schedule(arrivalTime);
+                presenter.submitFlight(flightSelected);
+                System.out.println("Schedule with success.");
+                showMainMenu();
+            } else {
+                System.out.println("Invalid option, please try again.");
+                printUserFlights(userFlights);
+                System.out.println("1 - Back to MENU");
+                System.out.println("0 - Close app");
+            }
         }
     }
 

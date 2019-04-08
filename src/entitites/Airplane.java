@@ -11,12 +11,11 @@ package entitites;
  *
  * @author hal-9000
  */
-public class AirPlane {
+public class Airplane extends Aircraft {
 
     private final String make;
     private final String model;
     private final int capacity;
-    private Pilot pilot;
 
     /**
      * Creating an airplane object.
@@ -25,7 +24,7 @@ public class AirPlane {
      * @param model number that describes the airplane
      * @param capacity how many seats
      */
-    public AirPlane(String make, String model, int capacity) {
+    public Airplane(String make, String model, int capacity) {
         this.make = make;
         this.model = model;
         this.capacity = capacity;
@@ -55,21 +54,6 @@ public class AirPlane {
     }
 
     /**
-     * @param pilot
-     */
-    public void assignPilot(Pilot pilot) {
-        this.pilot = pilot;
-    }
-
-    /**
-     *
-     * @return pilot
-     */
-    public Pilot getPilot() {
-        return this.pilot;
-    }
-
-    /**
      * Printing all attributes.
      *
      * @return
@@ -77,7 +61,7 @@ public class AirPlane {
     @Override
     public String toString() {
         return "AirPlane{" + "make=" + make + ", model=" + model + ", "
-                + "capacity=" + capacity + ", pilot=" + pilot + "}";
+                + "capacity=" + capacity + ", pilot=" + getPilot().toString() + "}";
     }
 
 }

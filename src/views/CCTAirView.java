@@ -5,7 +5,7 @@
  */
 package views;
 
-import entitites.AirPlane;
+import entitites.Airplane;
 import entitites.Flight;
 import entitites.Pilot;
 import java.util.List;
@@ -31,7 +31,7 @@ public interface CCTAirView {
      * @param pilots
      */
     public void onSuccessFlight(Flight flight,
-            List<AirPlane> airplanes,
+            List<Airplane> airplanes,
             List<Pilot> pilots);
 
     /**

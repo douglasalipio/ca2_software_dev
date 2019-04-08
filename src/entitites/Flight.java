@@ -14,7 +14,7 @@ package entitites;
 public class Flight {
 
     private final long id;
-    private AirPlane airPlane;
+    private Airplane airPlane;
     private String departureFrom;
     private String arrivalTo;
     private String departureTime;
@@ -117,7 +117,7 @@ public class Flight {
      *
      * @param airPlane
      */
-    public void assignAircraft(AirPlane airPlane) {
+    public void assignAircraft(Airplane airPlane) {
         this.airPlane = airPlane;
     }
 
@@ -144,7 +144,7 @@ public class Flight {
      *
      * @return
      */
-    public AirPlane getAirPlane() {
+    public Airplane getAirPlane() {
         return this.airPlane;
     }
 

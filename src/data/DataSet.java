@@ -6,7 +6,7 @@ package data;
  * and open the template in the editor.
  */
 import entitites.Flight;
-import entitites.AirPlane;
+import entitites.Airplane;
 import entitites.Pilot;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -49,7 +49,7 @@ public class DataSet {
         String[] arrivalToMocks = {"Hong Kong", "Haway", "London", "Krakow", "Caracas"};
         String[] departureTimeMocks = {"4:20", "6:40", "8:30", "12:45", "17:40"};
         String[] arrivalTimeMocks = {"8:00", "11:00", "16:00", "18:00", "19:15", "22:00"};
-        List<AirPlane> airPlanes = getMockAirplane();
+        List<Airplane> airPlanes = getMockAirplane();
 
         List<Date> dateFlightMocks = getMockDates();
 
@@ -104,8 +104,8 @@ public class DataSet {
      *
      * @return a list of airplanes
      */
-    public List<AirPlane> getMockAirplane() {
-        List<AirPlane> containerAirPlane = new ArrayList();
+    public List<Airplane> getMockAirplane() {
+        List<Airplane> containerAirPlane = new ArrayList();
         Random random = new Random();
 
         String[] make = {"Boeing Business Jets",
@@ -126,7 +126,7 @@ public class DataSet {
             int makeIndex = random.nextInt(make.length);
             int modelsIndex = random.nextInt(models.length);
             int capacityIndex = random.nextInt(capacity.length);
-            AirPlane plane = new AirPlane(make[makeIndex],
+            Airplane plane = new Airplane(make[makeIndex],
                     models[modelsIndex],
                     capacity[capacityIndex]);
             plane.assignPilot(mockPilot);
