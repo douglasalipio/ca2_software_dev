@@ -25,6 +25,10 @@ public class DataSet {
     private static DataSet INSTANCE = null;
     private final List<Flight> containerFlights = new ArrayList();
 
+    private DataSet() {
+
+    }
+
     /**
      * Singleton instance for DataSet object.
      *
