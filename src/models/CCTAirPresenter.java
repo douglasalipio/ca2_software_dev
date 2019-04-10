@@ -46,12 +46,10 @@ public class CCTAirPresenter {
      * @param arrivalTo
      */
     public void createFlight(String departureFrom, String dateFlight, String arrivalTo) {
-
         Flight newFlight = new Flight(dateFlight, departureFrom, arrivalTo);
         List<Airplane> airPlanes = DataSet.getInstance().getMockAirplane();
         List<Pilot> pilotes = DataSet.getInstance().getMockPilots();
         view.onSuccessFlight(newFlight, airPlanes, pilotes);
-
     }
 
     /**

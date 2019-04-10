@@ -14,7 +14,7 @@ import entitites.Pilot;
 import misc.StringUtils;
 
 /**
- * UI class responsable to show all information to the user.
+ * UI class responsible to show all information to the user.
  *
  * @author hal-9000
  */
@@ -28,31 +28,6 @@ public class CCTAirUI implements CCTAirView {
      */
     public CCTAirUI() {
         presenter.inject(this);
-    }
-
-    /**
-     * Input a new flight.
-     */
-    private void inputFlight() {
-
-        Scanner localReader = new Scanner(System.in);
-        String dateFlight = "";
-        System.out.println("Departure from:");
-        String departureFrom = localReader.next();
-
-        System.out.println("Arrival to:");
-        String arrivalTo = localReader.next();
-
-        System.out.println("Date flight (DD-MM-YYYY): ");
-        dateFlight = localReader.next();
-
-        while (!StringUtils.validateDate(dateFlight)) {
-            System.out.println("Invalid date. The format is dd-mm-yyyy");
-            System.out.println("Date flight (DD-MM-YYYY): ");
-            dateFlight = localReader.next();
-        }
-
-        presenter.createFlight(departureFrom, dateFlight, arrivalTo);
     }
 
     /**
@@ -73,7 +48,7 @@ public class CCTAirUI implements CCTAirView {
                 presenter.listAllFlights();
                 break;
             case 2:
-                inputFlight();
+                requestFlight();
                 break;
             case 3:
                 presenter.submitArrivalTime();
@@ -86,6 +61,31 @@ public class CCTAirUI implements CCTAirView {
     }
 
     /**
+     * Request a new flight.
+     */
+    private void requestFlight() {
+
+        Scanner localReader = new Scanner(System.in);
+        String dateFlight = "";
+        System.out.println("Departure from:");
+        String departureFrom = localReader.next();
+
+        System.out.println("Arrival to:");
+        String arrivalTo = localReader.next();
+
+        System.out.println("Date flight (DD-MM-YYYY): ");
+        dateFlight = localReader.next();
+
+        while (!StringUtils.validateDate(dateFlight)) {
+            System.out.println("\n***** Date format should be dd-mm-yyyy ******\n");
+            System.out.println("Date flight (DD-MM-YYYY): ");
+            reader.next();
+        }
+
+        presenter.createFlight(departureFrom, dateFlight, arrivalTo);
+    }
+
+    /**
      * Showing all flights.
      *
      * @param flights
@@ -95,12 +95,7 @@ public class CCTAirUI implements CCTAirView {
         flights.forEach((flight) -> {
             System.out.println(flight.toString());
         });
-        System.out.println("1 - Back to MENU");
-        System.out.println("0 - Close app");
-        int option = reader.nextInt();
-        if (option == 1) {
-            showMainMenu();
-        }
+        printBottomMenu();
     }
 
     /**
@@ -127,19 +122,16 @@ public class CCTAirUI implements CCTAirView {
      * @return
      */
     private Airplane chooseAirplane(List<Airplane> airplanes) {
-        Airplane airplaneSelected = null;
-        System.out.println("\nPick up an airplane:\n");
+        System.out.println("Choose an airplane:");
         printAirplanes(airplanes);
-        int airPlaneOption = reader.nextInt();
-
-        if (airPlaneOption >= 0 && airPlaneOption <= airplanes.size() - 1) {
-            airplaneSelected = airplanes.get(airPlaneOption);
-        } else {
-            System.out.println("Invalid option. Please try again.");
-            System.out.println("\nPick up an airplane:\n");
+        int airplaneOption = reader.nextInt();
+        while (!(airplaneOption >= 0 && airplaneOption <= airplanes.size() - 1)) {
+            System.out.println("\n***** Invalid option. Please try again *****\n");
+            System.out.println("Choose an airplane:");
             printAirplanes(airplanes);
+            airplaneOption = reader.nextInt();
         }
-        return airplaneSelected;
+        return airplanes.get(airplaneOption);
     }
 
     /**
@@ -149,18 +141,16 @@ public class CCTAirUI implements CCTAirView {
      * @return
      */
     private Pilot choosePilot(List<Pilot> pilots) {
-        Pilot pilotSelected = null;
-        System.out.println("\nPick up a pilot:");
+        System.out.println("Choose a pilot:");
         printPilotes(pilots);
         int pilotOption = reader.nextInt();
-        if (pilotOption >= 0 && pilotOption <= pilots.size() - 1) {
-            pilotSelected = pilots.get(pilotOption);
-        } else {
-            System.out.println("Invalid option. Please try again.");
-            System.out.println("\nPick up a pilot:");
+        while (!(pilotOption >= 0 && pilotOption <= pilots.size() - 1)) {
+            System.out.println("\n***** Invalid option. Please try again *****\n");
+            System.out.println("Choose a pilot:");
             printPilotes(pilots);
+            pilotOption = reader.nextInt();
         }
-        return pilotSelected;
+        return pilots.get(pilotOption);
     }
 
     /**
@@ -170,7 +160,7 @@ public class CCTAirUI implements CCTAirView {
      */
     private void printAirplanes(List<Airplane> airplanes) {
         for (int i = 0; i < airplanes.size(); i++) {
-            System.out.println(" " + i + " - " + airplanes.get(i).toString());
+            System.out.println("( " + i + " ) - " + airplanes.get(i).toString());
         }
     }
 
@@ -181,7 +171,7 @@ public class CCTAirUI implements CCTAirView {
      */
     private void printPilotes(List<Pilot> pilotes) {
         for (int i = 0; i < pilotes.size(); i++) {
-            System.out.println(" " + i + " - " + pilotes.get(i).toString());
+            System.out.println("( " + i + " ) - " + pilotes.get(i).toString());
         }
     }
 
@@ -227,8 +217,7 @@ public class CCTAirUI implements CCTAirView {
             } else {
                 System.out.println("Invalid option, please try again.");
                 printUserFlights(userFlights);
-                System.out.println("1 - Back to MENU");
-                System.out.println("0 - Close app");
+                printBottomMenu();
             }
         }
     }
@@ -256,8 +245,16 @@ public class CCTAirUI implements CCTAirView {
         } else {
             System.out.println("Invalid option, please try again.");
             printUserFlights(userFlights);
-            System.out.println("1 - Back to MENU");
-            System.out.println("0 - Close app");
+            printBottomMenu();
+        }
+    }
+
+    private void printBottomMenu() {
+        System.out.println("1 - Back to MENU");
+        System.out.println("0 - Close app");
+        int option = reader.nextInt();
+        if (option == 1) {
+            showMainMenu();
         }
     }
 }
