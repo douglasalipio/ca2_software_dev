@@ -69,8 +69,9 @@ public class Pilot {
      */
     @Override
     public String toString() {
-        return "Pilot {" + "name: " + name + ", "
-                + "qualification: " + qualification + ", " + "";
+        
+        return "" +"\n\tname: " + name + "\n\t"
+                + "qualification: " + qualification + "";
     }
 
 }

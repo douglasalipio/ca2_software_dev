@@ -60,8 +60,8 @@ public class Airplane extends Aircraft {
      */
     @Override
     public String toString() {
-        return "AirPlane{" + "make=" + make + ", model=" + model + ", "
-                + "capacity=" + capacity + ", pilot=" + getPilot().toString() + "}";
+        return "AirPlane " + "\n\tmake: " + make + "\n\tmodel: " + model + "\n"
+                + "\tcapacity: " + capacity + "\n\tpilot: " + getPilot().toString() + "";
     }
 
 }

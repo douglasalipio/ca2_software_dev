@@ -64,22 +64,20 @@ public class CCTAirUI implements CCTAirView {
      * Request a new flight.
      */
     private void requestFlight() {
-
-        Scanner localReader = new Scanner(System.in);
         String dateFlight = "";
         System.out.println("Departure from:");
-        String departureFrom = localReader.next();
+        String departureFrom = reader.next();
 
         System.out.println("Arrival to:");
-        String arrivalTo = localReader.next();
+        String arrivalTo = reader.next();
 
         System.out.println("Date flight (DD-MM-YYYY): ");
-        dateFlight = localReader.next();
+        dateFlight = reader.next();
 
         while (!StringUtils.validateDate(dateFlight)) {
             System.out.println("\n***** Date format should be dd-mm-yyyy ******\n");
             System.out.println("Date flight (DD-MM-YYYY): ");
-            reader.next();
+            dateFlight = reader.next();
         }
 
         presenter.createFlight(departureFrom, dateFlight, arrivalTo);

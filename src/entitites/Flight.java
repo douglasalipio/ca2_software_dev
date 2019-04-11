@@ -212,14 +212,17 @@ public class Flight {
      */
     @Override
     public String toString() {
-        return "Flight: {" + "Date: " + dateFlight + ", From: " + departureFrom
-                + ", To: " + arrivalTo + ", Departure time: " + departureTime
-                + "\nArrival time: " + arrivalTime
-                + "\nPlane information: " + "\nMake " + airPlane.getMake()
-                + "\nModel: " + airPlane.getModel()
-                + "\nCapacity:" + airPlane.getCapacity()
-                + "\nPilot: " + airPlane.getPilot()
-                + "}"
-                + "\n\n-------------------------------------------------------------------";
+        return "Flight ["
+                + "\n\tDate: " + dateFlight
+                + "\n\tFrom: " + departureFrom
+                + "\n\tTo: " + arrivalTo
+                + "\n\tDeparture time: " + departureTime
+                + "\n\tArrival time: " + arrivalTime
+                + "\n\tPlane information:"
+                + "\n\tMake: " + airPlane.getMake()
+                + "\n\tModel: " + airPlane.getModel()
+                + "\n\tCapacity: " + airPlane.getCapacity()
+                + "\n\tPilot information: " + airPlane.getPilot() + " ]"
+                + "\n";
     }
 }
